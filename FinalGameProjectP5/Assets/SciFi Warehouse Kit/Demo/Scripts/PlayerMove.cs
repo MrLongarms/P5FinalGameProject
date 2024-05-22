@@ -28,7 +28,15 @@ public class NewBehaviourScript : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
             transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime);
 
+        if (Input.GetKey(KeyCode.Space))
+        {
+
+        }
+
+
     }
+
+
 
     
 }
