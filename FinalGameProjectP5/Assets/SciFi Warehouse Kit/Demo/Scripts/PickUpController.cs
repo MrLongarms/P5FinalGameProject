@@ -21,7 +21,7 @@ public class PickUpController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if(Input.GetKey(KeyCode.Space))
+        if(Input.GetMouseButtonDown(0))
         {
             if(heldObj != null)
             {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
@@ -33,10 +34,10 @@ public class NewBehaviourScript : MonoBehaviour
 
         }
 
-
-    }
-
-
-
-    
+        //GetComponent(int PickupController)
+        {
+            //GetComponent.Get.GameObject<PickupController>
+        }
+        
+    }    
 }
