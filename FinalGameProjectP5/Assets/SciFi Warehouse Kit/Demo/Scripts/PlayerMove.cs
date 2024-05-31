@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
-    public float moveSpeed = 10f;
-    public float turnSpeed = 50f;
+    public float moveSpeed = 5f;
+    public float turnSpeed = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -27,13 +27,6 @@ public class NewBehaviourScript : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D))
             transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime);
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-
-        }
-
-
     }
 
 
