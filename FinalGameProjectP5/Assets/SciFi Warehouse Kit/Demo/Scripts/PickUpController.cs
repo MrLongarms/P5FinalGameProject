@@ -4,30 +4,52 @@ using UnityEngine;
 
 public class PickUpController : MonoBehaviour
 {
-    public float moveSpeed = 10f;
-    public float turnSpeed = 50f;
-
-    private Rigidbody rb;
+    public GameObject myHands;
+    bool canpickup;
+    GameObject ObjectIwantToPickUp;
+    bool hasItem;
 
     // Start is called before the first frame update
     private void Start()
     {
-
+        canpickup = false;
+        hasItem = false;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKey(KeyCode.W))
-            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+        if(canpickup == true)
+        {
+            if (Input.GetKeyDown("e"))
+            {
+                ObjectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = true;
+                ObjectIwantToPickUp.transform.position = myHands.transform.position;
+                ObjectIwantToPickUp.transform.parent = myHands.transform;
+            }
+        }
+        hasItem = true;
 
-        if (Input.GetKey(KeyCode.S))
-            transform.Translate(-Vector3.forward * moveSpeed * Time.deltaTime);
+        if (Input.GetKeyDown("q") && hasItem == true)
+        {
+            ObjectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = false;
 
-        if (Input.GetKey(KeyCode.A))
-            transform.Rotate(Vector3.up, -turnSpeed * Time.deltaTime);
+            ObjectIwantToPickUp.transform.parent = null;
+        }
+        hasItem = false;
+    }
 
-        if (Input.GetKey(KeyCode.D))
-            transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime);
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "cargo")
+        {
+            canpickup = true;
+            ObjectIwantToPickUp = other.gameObject;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        canpickup = false;
     }
 }
