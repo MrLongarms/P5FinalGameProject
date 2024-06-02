@@ -27,16 +27,16 @@ public class PickUpController : MonoBehaviour
                 ObjectIwantToPickUp.transform.position = myHands.transform.position;
                 ObjectIwantToPickUp.transform.parent = myHands.transform;
             }
+            hasItem = true;
         }
-        hasItem = true;
 
         if (Input.GetKeyDown("q") && hasItem == true)
         {
             ObjectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = false;
 
             ObjectIwantToPickUp.transform.parent = null;
+            hasItem = false;
         }
-        hasItem = false;
     }
 
     private void OnTriggerEnter(Collider other)

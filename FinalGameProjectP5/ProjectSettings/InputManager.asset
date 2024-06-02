@@ -41,8 +41,8 @@ InputManager:
     m_Name: ObjectIwantToPickUp
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: space
-    positiveButton: space
+    negativeButton: q
+    positiveButton: e
     altNegativeButton: q
     altPositiveButton: e
     gravity: 1000

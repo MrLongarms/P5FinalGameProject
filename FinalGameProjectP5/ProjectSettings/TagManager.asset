@@ -6,6 +6,7 @@ TagManager:
   tags:
   - object
   - cargo
+  - Zone
   layers:
   - Default
   - TransparentFX
