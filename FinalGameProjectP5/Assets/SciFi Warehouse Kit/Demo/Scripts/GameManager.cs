@@ -12,12 +12,12 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI timertext;
-    private float spawnRate = 1.0f;
+    private float spawnRate = 3.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnTarget());
+        StartCoroutine(SpawnCargo());
         score = 0;
         UpdateScore(0);
         gameOverText.gameObject.SetActive(true);
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    IEnumerator SpawnTarget()
+    IEnumerator SpawnCargo()
     {
         while (true)
         {
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void UpdateScore(int scoreToAdd)
+    public void UpdateScore(int scoreToAdd)
     {
         score += scoreToAdd;
         scoreText.text = "score: " + score;

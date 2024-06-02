@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PickUpController : MonoBehaviour
 {
     public GameObject myHands;
     bool canpickup;
-    GameObject ObjectIwantToPickUp;
+    GameObject CargoIwantToPickUp;
     bool hasItem;
 
     // Start is called before the first frame update
@@ -23,32 +24,34 @@ public class PickUpController : MonoBehaviour
         {
             if (Input.GetKeyDown("e"))
             {
-                ObjectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = true;
-                ObjectIwantToPickUp.transform.position = myHands.transform.position;
-                ObjectIwantToPickUp.transform.parent = myHands.transform;
+                CargoIwantToPickUp.GetComponent<Rigidbody>().isKinematic = true;
+                CargoIwantToPickUp.transform.position = myHands.transform.position;
+                CargoIwantToPickUp.transform.parent = myHands.transform;
             }
             hasItem = true;
         }
 
         if (Input.GetKeyDown("q") && hasItem == true)
         {
-            ObjectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = false;
-
-            ObjectIwantToPickUp.transform.parent = null;
+            while(hasItem == true)
+            {
+                CargoIwantToPickUp.GetComponent<Rigidbody>().isKinematic = false;
+                CargoIwantToPickUp.transform.parent = null;
+            }
             hasItem = false;
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider cargo)
     {
-        if(other.gameObject.tag == "cargo")
+        if(cargo.gameObject.tag == "cargo")
         {
             canpickup = true;
-            ObjectIwantToPickUp = other.gameObject;
+            CargoIwantToPickUp = cargo.gameObject;
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider cargo)
     {
         canpickup = false;
     }
