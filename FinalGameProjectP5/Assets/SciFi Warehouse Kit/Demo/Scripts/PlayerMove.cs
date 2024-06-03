@@ -6,7 +6,7 @@ public class PlayerMove : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float turnSpeed = 100f;
-    private object Reset;
+    public GameObject reset;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +29,7 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
             transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime);
 
-        //if (Input.GetKey(KeyCode.R))
-            //transform.Rotate(Vector3.up, Reset.player.Rotation);
+        if (Input.GetKey(KeyCode.R))
+            transform.rotation = Quaternion.identity;
     }
 }

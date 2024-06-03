@@ -31,13 +31,15 @@ public class PickUpController : MonoBehaviour
             hasItem = true;
         }
 
+        while(hasItem == true)
+        {
+            canpickup = false;
+        }
+
         if (Input.GetKeyDown("q") && hasItem == true)
         {
-            while(hasItem == true)
-            {
-                CargoIwantToPickUp.GetComponent<Rigidbody>().isKinematic = false;
-                CargoIwantToPickUp.transform.parent = null;
-            }
+            CargoIwantToPickUp.GetComponent<Rigidbody>().isKinematic = false;
+            CargoIwantToPickUp.transform.parent = null;
             hasItem = false;
         }
     }
