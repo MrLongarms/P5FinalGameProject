@@ -6,7 +6,6 @@ public class PlayerMove : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float turnSpeed = 100f;
-    public GameObject reset;
 
     // Start is called before the first frame update
     void Start()

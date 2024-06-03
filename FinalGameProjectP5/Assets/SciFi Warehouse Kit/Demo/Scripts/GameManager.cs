@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnCargo());
         score = 0;
         UpdateScore(0);
-        gameOverText.gameObject.SetActive(true);
         timertext.gameObject.SetActive(true);
     }
 
@@ -44,5 +43,11 @@ public class GameManager : MonoBehaviour
     {
         score += scoreToAdd;
         scoreText.text = "score: " + score;
+    }
+
+    public void GameOver()
+    {
+        gameOverText.gameObject.SetActive(true);
+
     }
 }

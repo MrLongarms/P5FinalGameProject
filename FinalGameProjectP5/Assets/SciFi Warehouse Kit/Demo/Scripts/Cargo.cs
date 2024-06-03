@@ -13,7 +13,7 @@ public class Cargo : MonoBehaviour
     void Start()
     {
 
-        transform.position = new Vector3(Random.Range(8, 9), 4);
+        transform.position = new Vector3(0, 4, 8);
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
@@ -25,8 +25,7 @@ public class Cargo : MonoBehaviour
 
     private void OnTriggerEnter(Collider Zone)
     {
-        if (Zone.GetComponent<Rigidbody>())
-        Destroy(gameObject);
+        if (Zone.gameObject.tag == "cargo")
         gameManager.UpdateScore(pointValue);
     }
 }

@@ -31,11 +31,6 @@ public class PickUpController : MonoBehaviour
             hasItem = true;
         }
 
-        while(hasItem == true)
-        {
-            canpickup = false;
-        }
-
         if (Input.GetKeyDown("q") && hasItem == true)
         {
             CargoIwantToPickUp.GetComponent<Rigidbody>().isKinematic = false;
