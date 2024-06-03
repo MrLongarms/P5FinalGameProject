@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI timertext;
-    private float spawnRate = 3.0f;
+    private float spawnRate = 5.0f;
+    public float currCountdownValue;
 
     // Start is called before the first frame update
     void Start()
@@ -20,13 +21,13 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnCargo());
         score = 0;
         UpdateScore(0);
-        timertext.gameObject.SetActive(true);
+        StartCoroutine(StartCountdown());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     IEnumerator SpawnCargo()
@@ -45,9 +46,20 @@ public class GameManager : MonoBehaviour
         scoreText.text = "score: " + score;
     }
 
-    public void GameOver()
+    public IEnumerator StartCountdown(float countdownValue = 30.0f)
     {
-        gameOverText.gameObject.SetActive(true);
+        currCountdownValue = countdownValue;
 
+        while (currCountdownValue > 0)
+        {
+            Debug.Log(timertext.text = "Time: " + currCountdownValue);
+            yield return new WaitForSeconds(1.0f);
+            currCountdownValue--;
+
+            if (currCountdownValue > 0.0)
+            {
+                gameOverText.gameObject.SetActive(true);
+            }
+        }
     }
 }

@@ -26,8 +26,8 @@ public class GrabController : MonoBehaviour
                 CargoCanGrab.GetComponent <Rigidbody>().isKinematic = true;
                 CargoCanGrab.transform.position = grabArea.transform.position;
                 CargoCanGrab.transform.parent = grabArea.transform;
-                hasItem = true;
             }
+            hasItem = true;
 
             if (Input.GetKeyDown("q") && hasItem == true)
             {
@@ -38,16 +38,16 @@ public class GrabController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider cargo)
+    private void OnTriggerEnter(Collider other)
     {
-        if(cargo.gameObject.tag == "cargo")
+        if(other.gameObject.tag == "cargo")
         {
             canpickup = true;
-            CargoCanGrab = cargo.gameObject;
+            CargoCanGrab = other.gameObject;
         }
     }
 
-    private void OnTiggerExit(Collider cargo)
+    private void OnTriggerExit(Collider cargo)
     {
         canpickup = false;
     }
