@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    private float moveSpeed = 7f;
-    private float turnSpeed = 200f;
+    public float moveSpeed = 5f;
+    public float turnSpeed = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -27,5 +27,8 @@ public class PlayerMove : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D))
             transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime);
+
+        if (Input.GetKey(KeyCode.R))
+            transform.rotation = Quaternion.identity;
     }
 }

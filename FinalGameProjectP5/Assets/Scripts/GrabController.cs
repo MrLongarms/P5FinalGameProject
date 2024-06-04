@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GrabController : MonoBehaviour
 {
-    public GameObject myHands;
+    public GameObject grabArea;
     bool canpickup;
-    GameObject ObjectIwantToPickUp;
+    GameObject CargoCanGrab;
     bool hasItem;
 
     // Start is called before the first frame update
@@ -19,35 +19,36 @@ public class GrabController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canpickup == true)
+        if(canpickup == true)
         {
             if (Input.GetKeyDown("e"))
             {
-                ObjectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = true;
-                ObjectIwantToPickUp.transform.position = myHands.transform.position;
-                ObjectIwantToPickUp.transform.parent = myHands.transform;
+                CargoCanGrab.GetComponent <Rigidbody>().isKinematic = true;
+                CargoCanGrab.transform.position = grabArea.transform.position;
+                CargoCanGrab.transform.parent = grabArea.transform;
             }
             hasItem = true;
-        }
-        if (Input.GetKeyDown("q") && hasItem == true)
-        {
-            ObjectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = false;
 
-            ObjectIwantToPickUp.transform.parent = null;
-            hasItem = false;
+            if (Input.GetKeyDown("q") && hasItem == true)
+            {
+                CargoCanGrab.GetComponent <Rigidbody>().isKinematic = false;
+                CargoCanGrab.transform.parent = null;
+                hasItem = false;
+            }
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "cargo")
+        if(other.gameObject.tag == "cargo")
         {
             canpickup = true;
-            ObjectIwantToPickUp = other.gameObject;
+            CargoCanGrab = other.gameObject;
         }
     }
-    private void OnTriggerExit(Collider other)
+
+    private void OnTriggerExit(Collider cargo)
     {
         canpickup = false;
-
     }
 }
