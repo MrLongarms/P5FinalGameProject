@@ -4,51 +4,49 @@ using UnityEngine;
 
 public class GrabController : MonoBehaviour
 {
-    public GameObject grabArea;
-    bool canpickup;
-    GameObject CargoCanGrab;
+    public GameObject myHands;
+    bool canpickup; 
+    GameObject ObjectIwantToPickUp; 
     bool hasItem;
-
     // Start is called before the first frame update
     void Start()
     {
-        canpickup = false;
+        canpickup = false;   
         hasItem = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(canpickup == true)
+        if (canpickup == true)
         {
-            if (Input.GetKeyDown("e"))
+            if (Input.GetKeyDown("e"))  // can be e or any key
             {
-                CargoCanGrab.GetComponent <Rigidbody>().isKinematic = true;
-                CargoCanGrab.transform.position = grabArea.transform.position;
-                CargoCanGrab.transform.parent = grabArea.transform;
+                ObjectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = true;
+                ObjectIwantToPickUp.transform.position = myHands.transform.position;
+                ObjectIwantToPickUp.transform.parent = myHands.transform;
             }
             hasItem = true;
+        }
+        if (Input.GetKeyDown("q") && hasItem == true)
+        {
+            ObjectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = false;
 
-            if (Input.GetKeyDown("q") && hasItem == true)
-            {
-                CargoCanGrab.GetComponent <Rigidbody>().isKinematic = false;
-                CargoCanGrab.transform.parent = null;
-                hasItem = false;
-            }
+            ObjectIwantToPickUp.transform.parent = null;
+            hasItem= false;
         }
     }
-
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "cargo")
+        if (other.gameObject.tag == "object")
         {
             canpickup = true;
-            CargoCanGrab = other.gameObject;
+            ObjectIwantToPickUp = other.gameObject;
         }
     }
-
-    private void OnTriggerExit(Collider cargo)
+    private void OnTriggerExit(Collider other)
     {
         canpickup = false;
+
     }
 }
